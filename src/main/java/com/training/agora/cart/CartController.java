@@ -5,7 +5,11 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path ="api/v1/agora/cart")
-@CrossOrigin("*")
+
+// Permit this url to use these end points
+@CrossOrigin(origins = "http://localhost:4200")
+
+//Inject the needed classes
 @RequiredArgsConstructor
 public class CartController {
     private final CartService cartService;

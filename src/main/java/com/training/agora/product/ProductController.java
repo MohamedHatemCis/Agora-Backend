@@ -7,18 +7,20 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/agora/products")
+
+//Inject the needed classes
 @RequiredArgsConstructor
-@CrossOrigin("*")
+
+// Permit this url to use these end points
+@CrossOrigin(origins = "http://localhost:4200")
+
 public class ProductController {
     private final ProductService productService;
     @PostMapping
     public Boolean saveProduct(@RequestBody Product product){
         return productService.saveProduct(product);
     }
-    @GetMapping
-    public List<Product>getAllProducts(){
-        return productService.getAllProducts();
-    }
+
     @GetMapping(path = "/{id}")
     public Product getProductById(@PathVariable Long id){
         return productService.getProductById(id);
@@ -30,4 +32,8 @@ public class ProductController {
         return productService.getAllProductsWithCategoryAndSubCategory(cate_id,sub_id);
     }
 
+    @DeleteMapping(path = "/{id}")
+    public int deleteProductById(@PathVariable long id){
+        return productService.updateProductAvailability(id);
+    }
 }

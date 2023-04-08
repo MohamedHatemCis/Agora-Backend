@@ -7,8 +7,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "api/v1/agora/order")
+
+//Inject the needed classes
 @RequiredArgsConstructor
-@CrossOrigin("*")
+
+// Permit this url to use these end points
+@CrossOrigin(origins = "http://localhost:4200")
 public class OrderController {
     private final OrderService orderService;
     @PostMapping
@@ -18,6 +22,10 @@ public class OrderController {
     @GetMapping(path = "user/{id}")
     public List<Order> getAllUserOrders(@PathVariable long id){
         return orderService.getUserOrders(id);
+    }
+    @GetMapping(path = "all")
+    public List<Order> getAllOrders(){
+        return orderService.getAllOrders();
     }
     @GetMapping(path = "{id}")
     public Order getOrderById(@PathVariable long id){

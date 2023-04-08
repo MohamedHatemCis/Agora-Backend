@@ -22,6 +22,8 @@ public class Category {
     @Column(name = "cate_name")
     private String name;
 
+    private Boolean available;
+
 //    @OneToMany
 //    @JsonBackReference
 //    private List<SubCategory> subCategories;

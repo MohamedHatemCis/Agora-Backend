@@ -8,7 +8,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path ="api/v1/agora/cart-item")
-@CrossOrigin("*")
+
+// Permit this url to use these end points
+@CrossOrigin(origins = "http://localhost:4200")
+
+//Inject the needed classes
 @RequiredArgsConstructor
 public class Cart_ItemController {
     private final Cart_ItemService cartItemService;
@@ -28,10 +32,10 @@ public class Cart_ItemController {
     {
         return cartItemService.checkInCartItem(user_id,prod_id);
     }
-    @GetMapping(path = "user/{user_id}/order/{order_id}")
-    public List<CartItem> getOrderItems(@PathVariable long user_id ,@PathVariable long order_id  )
+    @GetMapping(path = "order/{order_id}")
+    public List<CartItem> getOrderItems(@PathVariable long order_id  )
     {
-        return cartItemService.getAllUserOrderItems(user_id,order_id);
+        return cartItemService.getAllUserOrderItems(order_id);
     }
 
     @DeleteMapping(path = "user/{user_id}/cart/{cart_id}/product/{prod_id}")

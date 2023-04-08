@@ -12,11 +12,11 @@ import java.util.Optional;
 
 @Repository
 public interface Cart_ItemRepository extends JpaRepository<CartItem,Long> {
-    @Query(value = "select * from cart_item where cart_id=?1 and order_id = 0",nativeQuery = true)
+    @Query(value = "select * from cart_item where user_id=?1 and order_id = 0",nativeQuery = true)
     List<CartItem> findAllCartItems(Long id);
 
-    @Query(value = "select * from cart_item where user_id=?1 and order_id = ?2",nativeQuery = true)
-    List<CartItem> getAllOrderItems(Long user_id, Long order_id);
+    @Query(value = "select * from cart_item where order_id = ?1",nativeQuery = true)
+    List<CartItem> getAllOrderItems(Long order_id);
 
     @Query(value = "select * from cart_item where user_id=?1 and prod_id=?2 and order_id = 0",nativeQuery = true)
     List<CartItem> checkItemFromCart(Long user_id, Long prod_id);

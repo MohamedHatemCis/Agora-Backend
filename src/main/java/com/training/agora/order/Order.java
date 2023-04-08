@@ -16,6 +16,7 @@ import java.util.Date;
 @Table
 @Entity(name = "orders")
 public class Order {
+
     @Id
     @SequenceGenerator(sequenceName ="order_seq" ,name ="order_seq" ,allocationSize = 1)
     @GeneratedValue(generator = "order_seq",strategy = GenerationType.SEQUENCE)
@@ -23,7 +24,9 @@ public class Order {
     private long id;
 
     private Double total;
+
     private int num_of_items;
+
     private Date created_date;
 
     @ManyToOne

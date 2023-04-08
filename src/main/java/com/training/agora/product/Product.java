@@ -37,6 +37,7 @@ public class Product {
     private String img;
     private Date created_date;
     private Date modified_date;
+    private Boolean available;
     @ManyToOne
     @JoinColumn(name = "cate_id")
     @JsonBackReference

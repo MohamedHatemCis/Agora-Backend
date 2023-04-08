@@ -13,7 +13,7 @@ import org.hibernate.annotations.Cascade;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table
-@Entity(name = "sub-categories")
+@Entity(name = "sub_categories")
 public class SubCategory {
     @Id
     @SequenceGenerator(sequenceName ="sub_seq" ,name ="sub_seq" ,allocationSize = 1)
@@ -22,6 +22,8 @@ public class SubCategory {
     private long id;
     @Column(name = "sub_name")
     private String name;
+
+    private Boolean available;
 
     @ManyToOne
     @JoinColumn(name = "cate_id")

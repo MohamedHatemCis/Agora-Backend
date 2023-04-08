@@ -8,7 +8,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "api/v1/agora/sub_category")
+
+//Inject the needed classes
 @RequiredArgsConstructor
+
+// Permit this url to use these end points
+@CrossOrigin(origins = "http://localhost:4200")
+
 public class Sub_CategoryController {
     private final Sub_CategoryService subCategoryService;
 
@@ -17,17 +23,16 @@ public class Sub_CategoryController {
     {
        return subCategoryService.saveSub_Category(subCategory);
     }
-    @GetMapping
-    @CrossOrigin("*")
-    public List<SubCategory> getAllSub_Categories()
-    {
-        return subCategoryService.getAllSub_Categories();
-    }
+
 
     @GetMapping("/{id}")
-    @CrossOrigin("*")
     public List<SubCategory> getAllSub_CategoriesWithCategoryId(@PathVariable long id)
     {
         return subCategoryService.getAllSub_CategoriesWithSpecificCategory(id);
+    }
+
+    @DeleteMapping(path = "/{id}")
+    public int deleteSubCategory(@PathVariable long id){
+       return subCategoryService.deleteSubCategory(id);
     }
 }
